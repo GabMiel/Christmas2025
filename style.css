@@ -44,7 +44,7 @@ body {
 /* ------------------------------ */
 
 .container {
-  width: 400px;
+  width: 90%;
   max-width: 420px;
   padding: 30px;
   background: linear-gradient(135deg, #87e1ff, #86bcef);
@@ -54,14 +54,6 @@ body {
   position: relative;
   z-index: 2;
   border: 2px solid #0078d4;
-}
-
-.christmas-card {
-  background: rgba(255,255,255,0.9);
-  border: 3px solid #0078d4;
-  box-shadow: 0 0 20px rgba(0,123,255,0.4);
-  position: relative;
-  z-index: 2;
 }
 
 h1.christmas-title {
@@ -78,12 +70,12 @@ h1.christmas-title {
 }
 
 input {
-  width: 300x;
-  padding : 10px;
+  width: 330px;
+  padding: 10px;
   margin-top: 20px;
   border: 1px solid #0078d4;
   border-radius: 6px;
-  font-size: 25px;
+  font-size: 22px;
   background: #e6f3ff;
 }
 
@@ -93,28 +85,114 @@ input {
 }
 
 /* ------------------------------ */
-/* 🎄 BUTTON STYLING 🎄 */
+/* 🎄 PUSHABLE CHRISTMAS BUTTON 🎄 */
 /* ------------------------------ */
 
-.christmas-btn {
-  background: linear-gradient(135deg, #0078d4, #00aaff);
-  color: white;
+.pushable {
+  position: relative;
   border: none;
-  width: 330px;
-  margin-top: 20px;
-  border-radius: 10px;
-  padding: 14px;
-  font-size: 25px;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  outline-offset: 4px;
+  transition: filter 250ms;
+  width: 270px;
+  height: 60px;
+  margin-top: 20px;
 }
 
-.christmas-btn:hover {
-  background: linear-gradient(135deg, #005fa3, #0099dd);
-  transform: scale(1.03);
+.shadow {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 12px;
+  background: rgba(0, 80, 160, 0.35);
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 }
 
+.edge {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(
+    to left,
+    hsl(210deg 80% 20%) 0%,
+    hsl(210deg 80% 35%) 8%,
+    hsl(210deg 80% 35%) 92%,
+    hsl(210deg 80% 20%) 100%
+  );
+}
+
+.front {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; height: 100%;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #0078d4, #00aaff);
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  z-index: 2;
+}
+
+.pushable:hover {
+  filter: brightness(110%);
+}
+
+.pushable:hover .front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.pushable:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.pushable:hover .shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.pushable:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+/* Sparkle Particles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.1);
+  animation: sparkleExpand 1200ms ease-out forwards;
+  z-index: 10;
+}
+
+@keyframes sparkleExpand {
+  0% {
+    opacity: 1;
+    transform: scale(0.2);
+    filter: blur(1px);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.6);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.5);
+    filter: blur(6px);
+  }
+}
 /* ------------------------------ */
 /* 🎄 SCREEN VIEW STYLES 🎄 */
 /* ------------------------------ */
