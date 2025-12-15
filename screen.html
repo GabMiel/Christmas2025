@@ -2,30 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Christmas2025 - Message</title>
+  <title>Christmas 2025 - Message</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="container screen-container" id="screenContainer">
+<body class="christmas-bg">
+
+  <!-- Snow overlay -->
+  <div class="snow"></div>
+
+  <div class="container screen-container christmas-frame" id="screenContainer">
+
+    <!-- Choice Screen -->
     <div id="choiceScreen" class="choice-screen">
       <button id="choiceCloseBtn" class="close-btn">✕</button>
-      <h2>Choose a message type</h2>
-      <button class="choice-btn" data-type="personal">Personal Message</button>
-      <button class="choice-btn" data-type="lastday">Last Day Message</button>
-      <button class="choice-btn" data-type="christmas">Christmas Message</button>
-      <button class="choice-btn" data-type="newyear">New Year Message</button>
+
+      <h2 class="christmas-title">🎄 Choose Your Message Type 🎁</h2>
+
+      <button class="choice-btn christmas-btn" data-type="personal">Personal Message</button>
+      <button class="choice-btn christmas-btn" data-type="lastday">Last Day Message</button>
+      <button class="choice-btn christmas-btn" data-type="christmas">Christmas Message</button>
+      <button class="choice-btn christmas-btn" data-type="newyear">New Year Message</button>
     </div>
 
+    <!-- Message Screen -->
     <div id="messageScreen" style="display:none;">
       <button id="closeBtn" class="close-btn" style="display:none;">✕</button>
+
       <div class="top-image" id="topImage">
         <img id="heroImg" src="" alt="" />
       </div>
-      <div class="dialogue-box">
+
+      <div class="dialogue-box christmas-dialogue">
         <div class="avatar-area">
           <img id="avatarImg" src="" alt="avatar" />
         </div>
+
         <div class="dialogue-content" id="dialogue">Loading...</div>
+
         <div class="controls" id="controls">
           <div class="index-indicator" id="indexIndicator"></div>
           <div class="nav-group">
@@ -35,6 +48,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <script src="screen.js"></script>

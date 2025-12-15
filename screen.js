@@ -1,12 +1,10 @@
-// X button on choice screen redirects to index.html
+// X button on choice screen → back to index
 const choiceCloseBtn = document.getElementById('choiceCloseBtn');
 if (choiceCloseBtn) {
   choiceCloseBtn.addEventListener('click', () => {
     window.location.href = 'index.html';
   });
 }
-// screen.js - loads message.json and displays messages with image/audio navigation
-
 
 // UI elements
 const choiceScreen = document.getElementById('choiceScreen');
@@ -22,11 +20,14 @@ const avatarImg = document.getElementById('avatarImg');
 let messages = [];
 let currentAudio = null;
 let index = 0;
-let selectedType = null;
-let selectedName = null;
 
+// Read sessionStorage
+const matchType = sessionStorage.getItem("matchType");
+const matchName = sessionStorage.getItem("matchName");
+const matchKey = sessionStorage.getItem("matchKey");
+
+// Normalize message items
 function normalizeItems(raw) {
-  // raw may be array of objects {text, audio, image} or array of strings
   return (raw || []).map((item) => {
     if (typeof item === 'string') return { text: item };
     return {
@@ -37,6 +38,7 @@ function normalizeItems(raw) {
   });
 }
 
+// Image loader with fallback extensions
 function trySetImage(imgName) {
   if (!imgName) {
     heroImg.src = '';
@@ -44,7 +46,6 @@ function trySetImage(imgName) {
     return;
   }
 
-  // Try common extensions; onerror we'll fall back to the next one
   const exts = ['.png', '.jpg', '.jpeg', '.webp', '.gif'];
   let i = 0;
 
@@ -66,6 +67,7 @@ function trySetImage(imgName) {
   tryNext();
 }
 
+// Audio loader with fallback extensions
 function playAudioFor(item) {
   if (currentAudio) {
     currentAudio.pause();
@@ -94,6 +96,7 @@ function playAudioFor(item) {
   tryNext();
 }
 
+// Render message
 function render() {
   const item = messages[index];
   if (!item) {
@@ -103,63 +106,70 @@ function render() {
     closeBtn.style.display = 'none';
     return;
   }
+
   dialogue.textContent = item.text || '';
   trySetImage(item.image);
   indexIndicator.textContent = `${index + 1}/${messages.length}`;
-  // Show X button only on last message
-  if (index === messages.length - 1) {
-    closeBtn.style.display = 'flex';
-  } else {
-    closeBtn.style.display = 'none';
-  }
+
+  closeBtn.style.display = index === messages.length - 1 ? 'flex' : 'none';
 }
 
+// Navigation
 function go(delta) {
   const next = index + delta;
   if (next < 0 || next >= messages.length) return;
   index = next;
   render();
-  // Auto-play on navigation
   playAudioFor(messages[index]);
 }
 
-
 prevBtn.addEventListener('click', () => go(-1));
 nextBtn.addEventListener('click', () => go(1));
+
 closeBtn.addEventListener('click', () => {
-  // Return to choice screen
   messageScreen.style.display = 'none';
   choiceScreen.style.display = 'flex';
   messages = [];
   index = 0;
-  selectedType = null;
-  selectedName = null;
 });
 
-
-// Choice screen logic
+// Load JSON
 fetch('message.json')
   .then((r) => r.json())
   .then((data) => {
-    // Attach click handlers for choices
+
+    // ✅ If system message → auto-load
+    if (matchType === "system" && matchKey) {
+      choiceScreen.style.display = "none";
+      messageScreen.style.display = "block";
+
+      messages = normalizeItems(data.systemMessages[matchKey] || []);
+      index = 0;
+
+      render();
+      playAudioFor(messages[index]);
+
+      sessionStorage.clear();
+      return;
+    }
+
+    // ✅ Otherwise show choice screen
     document.querySelectorAll('.choice-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        selectedType = btn.getAttribute('data-type');
+        const selectedType = btn.getAttribute('data-type');
         index = 0;
-        // Hide choice, show message UI
+
         choiceScreen.style.display = 'none';
         messageScreen.style.display = 'block';
 
-        // Load messages based on type
         if (selectedType === 'personal') {
-          // Show a prompt to select a name (reuse name input logic)
-          // For now, just pick the first name in personalMessages
-          const names = Object.keys(data.personalMessages || {});
-          if (names.length > 0) {
-            selectedName = names[0];
-            messages = normalizeItems(data.personalMessages[selectedName]);
+          if (matchName) {
+            messages = normalizeItems(data.personalMessages[matchName] || []);
           } else {
-            messages = [];
+            const names = Object.keys(data.personalMessages || {});
+            if (names.length > 0) {
+              messages = normalizeItems(data.personalMessages[names[0]]);
+            }
           }
         } else if (selectedType === 'lastday') {
           messages = normalizeItems(data.lastDayMessage);
@@ -167,15 +177,17 @@ fetch('message.json')
           messages = normalizeItems(data.christmasMessage);
         } else if (selectedType === 'newyear') {
           messages = normalizeItems(data.newYearMessage);
-        } else {
-          messages = [];
         }
+
         render();
         playAudioFor(messages[index]);
+
+        sessionStorage.clear();
       });
     });
+
   })
   .catch((err) => {
     console.error('Failed to load message.json', err);
-    if (choiceScreen) choiceScreen.innerHTML = 'Failed to load messages.';
+    choiceScreen.innerHTML = 'Failed to load messages.';
   });

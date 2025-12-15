@@ -1,30 +1,237 @@
-.choice-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  gap: 18px;
+/* ------------------------------ */
+/* 🎄 GLOBAL RESET & BASE STYLES 🎄 */
+/* ------------------------------ */
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.choice-screen h2 {
-  color: #222;
+body {
+  margin: 0;
+  height: 100vh;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ------------------------------ */
+/* 🎄 CHRISTMAS BACKGROUND & SNOW 🎄 */
+/* ------------------------------ */
+
+.christmas-bg {
+  background: url('image/christmas.jpg'), #003366;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.snow {
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('image/snow.gif');
+  background-size: cover;
+  opacity: 0.35;
+  z-index: 1;
+}
+
+/* ------------------------------ */
+/* 🎄 CONTAINER STYLING 🎄 */
+/* ------------------------------ */
+
+.container {
+  width: 400px;
+  max-width: 420px;
+  padding: 30px;
+  background: linear-gradient(135deg, #87e1ff, #86bcef);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.3), 0 0 8px rgba(255, 255, 255, 0.2);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  border: 2px solid #0078d4;
+}
+
+.christmas-card {
+  background: rgba(255,255,255,0.9);
+  border: 3px solid #0078d4;
+  box-shadow: 0 0 20px rgba(0,123,255,0.4);
+  position: relative;
+  z-index: 2;
+}
+
+h1.christmas-title {
+  font-family: "Georgia", serif;
+  font-size: 26px;
+  color: #0078d4;
+  text-shadow: 0 0 6px rgba(255,255,255,0.8);
   margin-bottom: 10px;
 }
 
-.choice-btn {
-  padding: 14px 32px;
-  font-size: 18px;
-  border-radius: 8px;
-  border: none;
-  background: #0078d4;
-  color: #fff;
-  margin: 4px 0;
-  cursor: pointer;
-  transition: background 0.2s;
+.christmas-subtitle {
+  color: #333;
+  margin-bottom: 20px;
 }
-.choice-btn:hover {
-  background: #005fa3;
+
+input {
+  width: 300x;
+  padding : 10px;
+  margin-top: 20px;
+  border: 1px solid #0078d4;
+  border-radius: 6px;
+  font-size: 25px;
+  background: #e6f3ff;
+}
+
+.output {
+  margin-top: 20px;
+  white-space: pre-line;
+}
+
+/* ------------------------------ */
+/* 🎄 BUTTON STYLING 🎄 */
+/* ------------------------------ */
+
+.christmas-btn {
+  background: linear-gradient(135deg, #0078d4, #00aaff);
+  color: white;
+  border: none;
+  width: 330px;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.christmas-btn:hover {
+  background: linear-gradient(135deg, #005fa3, #0099dd);
+  transform: scale(1.03);
+}
+
+/* ------------------------------ */
+/* 🎄 SCREEN VIEW STYLES 🎄 */
+/* ------------------------------ */
+
+.screen-container {
+  width: 100%;
+  max-width: 900px;
+  height: 90vh;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.christmas-frame {
+  border: 4px solid #0078d4;
+  box-shadow: 0 0 25px rgba(0,123,255,0.4);
+  position: relative;
+  z-index: 2;
+}
+
+.top-image {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  min-height: 0;
+}
+
+.top-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ------------------------------ */
+/* 🎄 DIALOGUE BOX STYLES 🎄 */
+/* ------------------------------ */
+
+.dialogue-box {
+  height: 30vh;
+  background: rgba(0,0,0,0.85);
+  border-top: 3px solid #0078d4;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  margin-top: auto;
+}
+
+.dialogue-content {
+  flex: 1 1 auto;
+  white-space: pre-line;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.index-indicator {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin-right: 8px;
+}
+
+.nav-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.nav-group {
+  display: flex;
+  gap: 6px;
+}
+
+/* ------------------------------ */
+/* 🎄 AVATAR STYLING 🎄 */
+/* ------------------------------ */
+
+.avatar-area {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-area img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #444;
+  border: 2px solid rgba(255,255,255,0.06);
+}
+
+/* ------------------------------ */
+/* 🎄 CONTROLS & CLOSE BUTTON 🎄 */
+/* ------------------------------ */
+
+.controls {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .close-btn {
@@ -46,150 +253,7 @@
   opacity: 0.92;
   transition: background 0.2s;
 }
+
 .close-btn:hover {
   background: #222;
-}
-* {
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-  margin: 0;
-  height: 100vh;
-  background: #f5f5f5;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  width: 90%;
-  max-width: 400px;
-  padding: 20px;
-
-  background: white;
-  border-radius: 8px;
-  text-align: center;
-}
-
-h1 {
-  margin-bottom: 20px;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.output {
-  margin-top: 20px;
-  white-space: pre-line;
-}
-
-/* Screen view styles */
-.screen-container {
-  width: 100%;
-  max-width: 900px;
-  height: 90vh;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
-}
-
-.top-image {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #eee;
-  min-height: 0;
-}
-
-.top-image img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.dialogue-box {
-  height: 30vh;
-  background: #000; /* black dialogue box */
-  border-top: 1px solid #111;
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-  margin-top: auto;
-}
-
-.dialogue-content {
-  flex: 1 1 auto;
-  white-space: pre-line;
-  color: #fff; /* white text */
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-.nav-btn {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 6px;
-}
-
-.index-indicator {
-  font-size: 12px;
-  color: rgba(255,255,255,0.7);
-  margin-right: 8px;
-}
-
-/* Avatar area on left of dialogue */
-.avatar-area {
-  width: 64px;
-  height: 64px;
-  flex: 0 0 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.avatar-area img {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #444;
-  border: 2px solid rgba(255,255,255,0.06);
-}
-
-/* Controls container placed at bottom-right inside dialogue box */
-.controls {
-  position: absolute;
-  right: 12px;
-  bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.nav-group {
-  display: flex;
-  gap: 6px;
 }
