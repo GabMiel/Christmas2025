@@ -138,7 +138,7 @@ fetch('message.json')
   .then((r) => r.json())
   .then((data) => {
 
-    // ✅ If system message → auto-load
+    // If system message → auto-load
     if (matchType === "system" && matchKey) {
       choiceScreen.style.display = "none";
       messageScreen.style.display = "block";
@@ -153,10 +153,10 @@ fetch('message.json')
       return;
     }
 
-    // ✅ Otherwise show choice screen
-    document.querySelectorAll('.choice-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const selectedType = btn.getAttribute('data-type');
+    // Otherwise show gift choice screen
+    document.querySelectorAll('.gift-box').forEach(box => {
+      box.addEventListener('click', () => {
+        const selectedType = box.dataset.type;
         index = 0;
 
         choiceScreen.style.display = 'none';
@@ -171,8 +171,8 @@ fetch('message.json')
               messages = normalizeItems(data.personalMessages[names[0]]);
             }
           }
-        } else if (selectedType === 'lastday') {
-          messages = normalizeItems(data.lastDayMessage);
+        } else if (selectedType === 'multiple') {
+          messages = normalizeItems(data.systemMessages.multipleMatch);
         } else if (selectedType === 'christmas') {
           messages = normalizeItems(data.christmasMessage);
         } else if (selectedType === 'newyear') {

@@ -3,28 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <title>Christmas 2025 - Message</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="screen.css" />
 </head>
 <body class="christmas-bg">
 
   <!-- Snow overlay -->
   <div class="snow"></div>
 
-  <div class="container screen-container christmas-frame" id="screenContainer">
+  <div class="screen-container christmas-frame" id="screenContainer">
 
-    <!-- Choice Screen -->
+    <!-- 🎁 Choice Screen -->
     <div id="choiceScreen" class="choice-screen">
       <button id="choiceCloseBtn" class="close-btn">✕</button>
 
-      <h2 class="christmas-title">🎄 Choose Your Message Type 🎁</h2>
+        <h2 class="christmas-title">🎄 Choose Your Message Type 🎁</h2>
 
-      <button class="choice-btn christmas-btn" data-type="personal">Personal Message</button>
-      <button class="choice-btn christmas-btn" data-type="lastday">Last Day Message</button>
-      <button class="choice-btn christmas-btn" data-type="christmas">Christmas Message</button>
-      <button class="choice-btn christmas-btn" data-type="newyear">New Year Message</button>
+        <div class="gift-grid">
+          <div class="gift-box" data-type="personal">
+            <div class="ribbon"></div>
+            <span>Personal Message</span>
+          </div>
+
+          <div class="gift-box" data-type="multiple">
+            <div class="ribbon"></div>
+            <span>Multiple Match</span>
+          </div>
+
+          <div class="gift-box" data-type="christmas">
+            <div class="ribbon"></div>
+            <span>Christmas Message</span>
+          </div>
+
+          <div class="gift-box" data-type="newyear">
+            <div class="ribbon"></div>
+            <span>New Year Message</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Message Screen -->
+    <!-- 📜 Message Screen -->
     <div id="messageScreen" style="display:none;">
       <button id="closeBtn" class="close-btn" style="display:none;">✕</button>
 
