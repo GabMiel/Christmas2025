@@ -42,7 +42,7 @@ body {
   width: 700px;
   height: 280px;
   padding: 30px;
-  background: linear-gradient(135deg, #87e1ff, #86bcef);
+  background: #7be7ffb4;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
   text-align: center;
@@ -52,7 +52,7 @@ body {
 }
 
 .christmas-title {
-  font-family: "Georgia", serif;
+  font-family: "Helvetica", serif;
   font-size: 26px;
   color: #0078d4;
   text-shadow: 0 0 6px rgba(255,255,255,0.8);
@@ -65,8 +65,8 @@ input {
   margin-top: 20px;
   margin-bottom: 10px;
   border: 1px solid #0078d4;
-  border-radius: 6px;
-  font-size: 45px;
+  border-radius: 12px;
+  font-size: 40px;
   background: #e6f3ff;
 }
 
