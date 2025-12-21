@@ -10,65 +10,54 @@
   <!-- Snow overlay -->
   <div class="snow"></div>
 
-  <div class="screen-container christmas-frame" id="screenContainer">
+  <div class="screen-container christmas-frame">
 
     <!-- 🎁 Choice Screen -->
-    <div id="choiceScreen" class="choice-screen">
+    <div class="choice-screen">
       <button id="choiceCloseBtn" class="close-btn">✕</button>
 
-        <h2 class="christmas-title">🎄 Choose Your Message Type 🎁</h2>
+      <h2 class="christmas-title">🎄 Choose Your Message Type 🎁</h2>
 
-        <div class="gift-grid">
-          <div class="gift-box" data-type="personal">
-            <div class="ribbon"></div>
-            <span>Personal Message</span>
-          </div>
+      <div class="gift-grid">
+        <div class="gift-box" data-type="personal">
+          <div class="ribbon"></div>
+          <span>Personal Message</span>
+        </div>
 
-          <div class="gift-box" data-type="multiple">
-            <div class="ribbon"></div>
-            <span>Multiple Match</span>
-          </div>
+        <div class="gift-box" data-type="multiple">
+          <div class="ribbon"></div>
+          <span>Multiple Match</span>
+        </div>
 
-          <div class="gift-box" data-type="christmas">
-            <div class="ribbon"></div>
-            <span>Christmas Message</span>
-          </div>
+        <div class="gift-box" data-type="christmas">
+          <div class="ribbon"></div>
+          <span>Christmas Message</span>
+        </div>
 
-          <div class="gift-box" data-type="newyear">
-            <div class="ribbon"></div>
-            <span>New Year Message</span>
-          </div>
+        <div class="gift-box" data-type="newyear">
+          <div class="ribbon"></div>
+          <span>New Year Message</span>
         </div>
       </div>
     </div>
-
-    <!-- 📜 Message Screen -->
-    <div id="messageScreen" style="display:none;">
-      <button id="closeBtn" class="close-btn" style="display:none;">✕</button>
-
-      <div class="top-image" id="topImage">
-        <img id="heroImg" src="" alt="" />
-      </div>
-
-      <div class="dialogue-box christmas-dialogue">
-        <div class="avatar-area">
-          <img id="avatarImg" src="" alt="avatar" />
-        </div>
-
-        <div class="dialogue-content" id="dialogue">Loading...</div>
-
-        <div class="controls" id="controls">
-          <div class="index-indicator" id="indexIndicator"></div>
-          <div class="nav-group">
-            <button class="nav-btn" id="prevBtn" aria-label="Previous">◀</button>
-            <button class="nav-btn" id="nextBtn" aria-label="Next">▶</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <script src="screen.js"></script>
+  <script>
+    // Redirect to screen2.html with type
+    document.querySelectorAll('.gift-box').forEach(box => {
+      box.addEventListener('click', () => {
+        const type = box.getAttribute('data-type');
+        window.location.href = `screen2.html?type=${encodeURIComponent(type)}`;
+      });
+    });
+
+    // Close button → back to index
+    const choiceCloseBtn = document.getElementById('choiceCloseBtn');
+    if (choiceCloseBtn) {
+      choiceCloseBtn.addEventListener('click', () => {
+        window.location.href = '/index.html';
+      });
+    }
+  </script>
 </body>
 </html>

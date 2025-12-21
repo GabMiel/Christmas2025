@@ -1,3 +1,10 @@
+// Redirect to screen2.html when a gift-box is clicked
+document.querySelectorAll('.gift-box').forEach(box => {
+  box.addEventListener('click', () => {
+    const type = box.getAttribute('data-type');
+    window.location.href = `screen2.html?type=${encodeURIComponent(type)}`;
+  });
+});
 // X button on choice screen → back to index
 const choiceCloseBtn = document.getElementById('choiceCloseBtn');
 if (choiceCloseBtn) {
@@ -163,24 +170,32 @@ fetch('message.json')
         messageScreen.style.display = 'block';
 
         if (selectedType === 'personal') {
-          if (matchName) {
-            messages = normalizeItems(data.personalMessages[matchName] || []);
+          if (matchName && data.personalMessages && data.personalMessages[matchName]) {
+            messages = normalizeItems(data.personalMessages[matchName]);
           } else {
             const names = Object.keys(data.personalMessages || {});
             if (names.length > 0) {
               messages = normalizeItems(data.personalMessages[names[0]]);
+            } else {
+              messages = [];
             }
           }
         } else if (selectedType === 'multiple') {
-          messages = normalizeItems(data.systemMessages.multipleMatch);
+          messages = normalizeItems((data.systemMessages && data.systemMessages.multipleMatch) || []);
         } else if (selectedType === 'christmas') {
-          messages = normalizeItems(data.christmasMessage);
+          messages = normalizeItems(data.christmasMessage || []);
         } else if (selectedType === 'newyear') {
-          messages = normalizeItems(data.newYearMessage);
+          messages = normalizeItems(data.newYearMessage || []);
+        } else {
+          messages = [];
         }
 
-        render();
-        playAudioFor(messages[index]);
+        if (messages.length > 0) {
+          render();
+          playAudioFor(messages[index]);
+        } else {
+          dialogue.textContent = 'No messages found.';
+        }
 
         sessionStorage.clear();
       });

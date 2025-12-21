@@ -95,7 +95,7 @@ if (sparkleBtn) {
 
   // ⭐ Delay redirect so sparkles show
   setTimeout(() => {
-    window.location.href = "screen.html";
+    window.location.href = "screen/screen.html";
   }, 1000); // adjust this number if you want longer
 }
 });
