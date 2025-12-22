@@ -1,5 +1,5 @@
 {
-  "title": "Christmas2025",
+  "title": "Christmas Video",
 
   "systemMessages": {
     "multipleMatch": [
@@ -13,71 +13,19 @@
     ]
   },
 
-  "personalMessages": {
-    "Tura, John Angelo Victoria": [
-      { "text": "Message ko para kay Tura, John Angelo Victoria.", "audio": "tura1", "image": "turaimg1" },
-      { "text": "Salamat sa pagiging mabuti mong kaibigan.", "audio": "tura2", "image": "turaimg2" },
-      { "text": "Naramdaman ko yung sincerity, honesty at yung pagiging totoo mo.", "audio": "tura3", "image": "turaimg3" },
-      { "text": "Sobrang bilib din ako sa kakayahan mo sa pagpapaliwanag ng walang binabasa at sarili mong words yung ginagamit mo para maintindihan namin.", "audio": "tura4", "image": "turaimg4" },
-      { "text": "Masaya ako sayo dahil may friends ka na masasandalan sa problema.", "audio": "tura5", "image": "turaimg5" },
-      { "text": "At good luck pala sa journey, kung papalarin ng tadhana, magkikita ulit tayo next 2nd sem. Bye bye.", "audio": "tura6", "image": "turaimg6" }
-    ],
-
-    "Marcaida, John Michael Botictic": [
-      { "text": "Message ko para kay Marcaida, John Michael Botictic.", "audio": "marcaida1", "image": "marcaidaimg1" },
-      { "text": "Kahit na madaldal, makulit, nakakainis minsan, salamat sa pagiging maliit na parte ng buhay ko.", "audio": "marcaida2", "image": "marcaidaimg2" },
-      { "text": "Wala akong matandaan na tinulungan mo ako kahit isang beses, pero ang mahalaga tapos na rin yung mga gawain.", "audio": "marcaida3", "image": "marcaidaimg3" },
-      { "text": "Dibale, ito pala yung gift ko sayo, itong message na ito. Sana ma-appreciate mo haha.", "audio": "marcaida4", "image": "marcaidaimg4" },
-      { "text": "So yeah, Happy Advance Merry Christmas at Happy New Year na rin. Goodbye.", "audio": "marcaida5", "image": "marcaidaimg5" }
-    ],
-
-    "Mustapah, Hasanor Dilaos": [
-      { "text": "Message ko para kay Mustapah, Hasanor Dilaos.", "audio": "mustapah1", "image": "mustapahimg1" },
-      { "text": "Congrats sa exam, alam ko pasado ka sa lahat.", "audio": "mustapah2", "image": "mustapahimg2" },
-      { "text": "Good luck at alam kong hindi mo na kailangan ng message na ito kaya \"FIGHTING!!!\"", "audio": "mustapah3", "image": "mustapahimg3" },
-      { "text": "Kung maging kaklase kita this 2nd sem, bahala na si Lord sa akin. Sana bigyan niya ako ng lakas at katatagan ng loob haha.", "audio": "mustapah4", "image": "mustapahimg4" }
-    ],
-
-    "Nueca, Kurt Christian Dolfo": [
-      { "text": "Message ko para kay Nueca, Kurt Christian Dolfo.", "audio": "nueca1", "image": "nuecaimg1" },
-      { "text": "Tatlong beses lang yung interaction natin o yung pag-uusap natin kaya masasabi ko lang.", "audio": "nueca2", "image": "nuecaimg2" },
-      { "text": "Para sa akin, okay naman yung personality mo, magaan sa pakiramdam yung boses mo, mukhang mabuti ka namang tao at may maraming masasabi.", "audio": "nueca3", "image": "nuecaimg3" },
-      { "text": "Btw, Christian ka ba? Haha.", "audio": "nueca4", "image": "nuecaimg4" },
-      { "text": "Anyways, sana maging masaya yung Pasko mo at sana matupad yung wish mo sa New Year. Good luck!", "audio": "nueca5", "image": "nuecaimg5" }
-    ],
-
-    "Santos, Robert Miko Alina": [
-      { "text": "Message ko para kay Santos, Robert Miko Alina.", "audio": "santos1", "image": "santosimg1" },
-      { "text": "Umm... hmm... salamat pala sa libro na pinahiram mo matagal na.", "audio": "santos2", "image": "santosimg2" },
-      { "text": "Natatandaan ko, nung mga early days ng school tumatabi ka sa akin at nalaman ko na tahimik ka talagang tao.", "audio": "santos3", "image": "santosimg3" },
-      { "text": "Anyways, kahit acquaintance lang tayo, former classmate lol, I wish you the best and do what makes you happy. See ya!", "audio": "santos4", "image": "santosimg4" }
-    ]
-  },
-
-  "lastDayMessage": [
-    { "text": "Kung nakikita mo ito, kamusta ka na?", "audio": "lastday1", "image": "lastdayimg1" },
-    { "text": "Meaningful ba ang journey mo?", "audio": "lastday2", "image": "lastdayimg2" },
-    { "text": "Ngayon ay December 14, 2025, at ang message na ito ay para bukas dahil ito ang last day namin.", "audio": "lastday3", "image": "lastdayimg3" },
-    { "text": "Maraming masasayang ala-ala at malulungkot, pero kadalasan bittersweet ang mga moments.", "audio": "lastday4", "image": "lastdayimg4" },
-    { "text": "Patuloy ko pa rin ginagawa ang favorite kong quote na \"Do What Makes You Happy\" kaya nagawa ko itong message na ito.", "audio": "lastday5", "image": "lastdayimg5" }
-  ],
-
   "christmasMessage": [
-    { "text": "Hindi pa nagsisimula yung Christmas pero ito yung message ko.", "audio": "christmas1", "image": "christmasimg1" },
-    { "text": "Happy Advance Merry Christmas everyone!", "audio": "christmas2", "image": "christmasimg2" },
-    { "text": "Kahit na hindi ko kayo nakikita at ito yung paraan ko ng pagsasabi.", "audio": "christmas3", "image": "christmasimg3" },
-    { "text": "Merry Christmas pa rin, kahit na walang gifts yung iba haha.", "audio": "christmas4", "image": "christmasimg4" },
-    { "text": "Sa susunod na Pasko, magiging mas maganda pa ang surpresa kaya abangan niyo yan.", "audio": "christmas5", "image": "christmasimg5" },
-    { "text": "Good luck at Merry Christmas 🎁🎄.", "audio": "christmas6", "image": "christmasimg6" }
+    { "text": "Merry Christmas!! Maligayang Pasko!!", "audio": "christmas1", "image": "christmasimg1" },
+    { "text": "Enjoyin niyo na ang bakasyon dahil 11 days nalang at enrollment na 🙀", "audio": "christmas2", "image": "christmasimg2" },
+    { "text": "At babalik na tayo sa reality pagtapos ng bagong taon", "audio": "christmas3", "image": "christmasimg3" },
+    { "text": "Pero may good news ako", "audio": "christmas4", "image": "christmasimg4" },
+    { "text": "Good news na buhay pa tayo. May next semester pa para ma-develop ang character development natin.", "audio": "christmas5", "image": "christmasimg5" },
+    { "text": "Pero laban lang, kasi wala naman tayong choice.", "audio": "christmas6", "image": "christmasimg6" },
+    { "text": "Good luck sa atin, Merry Christmas at advance Happy New Year narin, at kitakits nalang sa enrollment at start ng klase, じゃあね！", "audio": "christmas7", "image": "christmasimg7" }
   ],
 
-  "newYearMessage": [
-    { "text": "Well, hindi ko pa naiisip kung anong plano ko sa New Year.", "audio": "newyear1", "image": "newyearimg1" },
-    { "text": "Kung bibigyan ako ng 3 wishes... hmm...", "audio": "newyear2", "image": "newyearimg2" },
-    { "text": "Una, kumain sa Angel's Pizza.", "audio": "newyear3", "image": "newyearimg3" },
-    { "text": "Pangalawa, magkaroon ng study buddy.", "audio": "newyear4", "image": "newyearimg4" },
-    { "text": "Panghuli, sana maging maayos ang buhay ng pamilya ko at magkaroon ng maraming blessings.", "audio": "newyear5", "image": "newyearimg5" },
-    { "text": "Sana rin makapagtapos ako ng pag-aaral para makatulong sa pamilya ko haha.", "audio": "newyear6", "image": "newyearimg6" },
-    { "text": "Good luck sa New Year at Christmas! Sana maging masaya ang buhay niyong lahat!", "audio": "newyear7", "image": "newyearimg7" }
+  "christmasVideo": [
+    {
+      "video": "https://youtu.be/YoXypt0hDTM?si=AKZorU9PlEXnXM99"
+    }
   ]
 }
