@@ -13,51 +13,25 @@
   <div class="screen-container christmas-frame">
 
     <!-- 🎁 Choice Screen -->
-    <div class="choice-screen">
+    <div id="choiceScreen" class="choice-screen">
       <button id="choiceCloseBtn" class="close-btn">✕</button>
 
-      <h2 class="christmas-title">🎄 Choose Your Message Type 🎁</h2>
+      <h2 class="christmas-title">🎄 Choose Your Gift 🎁</h2>
 
       <div class="gift-grid">
-        <div class="gift-box" data-type="personal">
+        <!-- Left: Purple Video Box -->
+        <div class="gift-box" data-type="christmasVideo">
           <div class="ribbon"></div>
-          <span>Personal Message</span>
+          <span>Christmas Video</span>
         </div>
 
-        <div class="gift-box" data-type="multiple">
-          <div class="ribbon"></div>
-          <span>Multiple Match</span>
-        </div>
-
+        <!-- Right: Green Message Box -->
         <div class="gift-box" data-type="christmas">
           <div class="ribbon"></div>
           <span>Christmas Message</span>
         </div>
-
-        <div class="gift-box" data-type="newyear">
-          <div class="ribbon"></div>
-          <span>New Year Message</span>
-        </div>
       </div>
     </div>
-  </div>
-
-  <script>
-    // Redirect to screen2.html with type
-    document.querySelectorAll('.gift-box').forEach(box => {
-      box.addEventListener('click', () => {
-        const type = box.getAttribute('data-type');
-        window.location.href = `screen2.html?type=${encodeURIComponent(type)}`;
-      });
-    });
-
-    // Close button → back to index
-    const choiceCloseBtn = document.getElementById('choiceCloseBtn');
-    if (choiceCloseBtn) {
-      choiceCloseBtn.addEventListener('click', () => {
-        window.location.href = '/index.html';
-      });
-    }
-  </script>
+  <script src="screen.js"></script>
 </body>
 </html>

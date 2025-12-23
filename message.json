@@ -1,5 +1,5 @@
 {
-  "title": "Christmas Video",
+  "title": "Christmas Message 2025",
 
   "systemMessages": {
     "multipleMatch": [
@@ -13,6 +13,14 @@
     ]
   },
 
+  "authNames": [
+    "Marx Elis Suarez",
+    "Charisse Dela Cruz",
+    "Dexter Ubina",
+    "Jastine Buscas",
+    "Adrian Lamban"
+  ],
+
   "christmasMessage": [
     { "text": "Merry Christmas!! Maligayang Pasko!!", "audio": "christmas1", "image": "christmasimg1" },
     { "text": "Enjoyin niyo na ang bakasyon dahil 11 days nalang at enrollment na 🙀", "audio": "christmas2", "image": "christmasimg2" },
@@ -21,11 +29,5 @@
     { "text": "Good news na buhay pa tayo. May next semester pa para ma-develop ang character development natin.", "audio": "christmas5", "image": "christmasimg5" },
     { "text": "Pero laban lang, kasi wala naman tayong choice.", "audio": "christmas6", "image": "christmasimg6" },
     { "text": "Good luck sa atin, Merry Christmas at advance Happy New Year narin, at kitakits nalang sa enrollment at start ng klase, じゃあね！", "audio": "christmas7", "image": "christmasimg7" }
-  ],
-
-  "christmasVideo": [
-    {
-      "video": "https://youtu.be/YoXypt0hDTM?si=AKZorU9PlEXnXM99"
-    }
   ]
 }

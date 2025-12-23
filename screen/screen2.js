@@ -50,7 +50,7 @@ function trySetImage(imgName) {
   tryNext();
 }
 
-// Avatar loader (fixed or per-message if you want later)
+// Avatar loader
 function trySetAvatar() {
   avatarImg.src = '../image/avatar.jpg';
   avatarImg.alt = 'avatar';
@@ -117,35 +117,12 @@ closeBtn.addEventListener('click', () => {
   window.location.href = 'screen.html';
 });
 
-// Get type from query string
-function getTypeFromQuery() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get('type') || 'personal';
-}
-
-// Load JSON and select messages
+// Load JSON and select only christmasMessage
 fetch('../message.json')
   .then((r) => r.json())
   .then((data) => {
-    const type = getTypeFromQuery();
-    if (type === 'personal') {
-      const names = Object.keys(data.personalMessages || {});
-      if (names.length > 0) {
-        messages = normalizeItems(data.personalMessages[names[0]]);
-      }
-    } else if (type === 'multiple') {
-      messages = normalizeItems(data.systemMessages.multipleMatch);
-    } else if (type === 'fallback') {
-      messages = normalizeItems(data.systemMessages.fallback);
-    } else if (type === 'christmas') {
-      messages = normalizeItems(data.christmasMessage);
-    } else if (type === 'newyear') {
-      messages = normalizeItems(data.newYearMessage);
-    } else if (type === 'lastday') {
-      messages = normalizeItems(data.lastDayMessage);
-    } else {
-      messages = [];
-    }
+    messages = normalizeItems(data.christmasMessage || []);
+    index = 0;
     render();
   })
   .catch((err) => {

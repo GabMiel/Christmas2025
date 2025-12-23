@@ -1,37 +1,29 @@
-// Redirect to screen2.html when a gift-box is clicked
+// Redirect gift-box clicks
 document.querySelectorAll('.gift-box').forEach(box => {
   box.addEventListener('click', () => {
     const type = box.getAttribute('data-type');
-    window.location.href = `screen2.html?type=${encodeURIComponent(type)}`;
+    if (type === 'christmasVideo') {
+      // Redirect to dedicated video layout
+      window.location.href = 'screen3.html';
+    } else if (type === 'christmas') {
+      // Redirect to dedicated message layout
+      window.location.href = 'screen2.html';
+    }
   });
 });
-// X button on choice screen → back to index
+
+
+// Close button → back to index
 const choiceCloseBtn = document.getElementById('choiceCloseBtn');
 if (choiceCloseBtn) {
   choiceCloseBtn.addEventListener('click', () => {
-    window.location.href = 'index.html';
+    window.location.href = '/index.html';
   });
 }
-
-// UI elements
-const choiceScreen = document.getElementById('choiceScreen');
-const messageScreen = document.getElementById('messageScreen');
-const closeBtn = document.getElementById('closeBtn');
-const heroImg = document.getElementById('heroImg');
-const dialogue = document.getElementById('dialogue');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const indexIndicator = document.getElementById('indexIndicator');
-const avatarImg = document.getElementById('avatarImg');
 
 let messages = [];
 let currentAudio = null;
 let index = 0;
-
-// Read sessionStorage
-const matchType = sessionStorage.getItem("matchType");
-const matchName = sessionStorage.getItem("matchName");
-const matchKey = sessionStorage.getItem("matchKey");
 
 // Normalize message items
 function normalizeItems(raw) {
@@ -45,17 +37,15 @@ function normalizeItems(raw) {
   });
 }
 
-// Image loader with fallback extensions
+// Image loader with fallback
 function trySetImage(imgName) {
   if (!imgName) {
     heroImg.src = '';
     heroImg.alt = '';
     return;
   }
-
   const exts = ['.png', '.jpg', '.jpeg', '.webp', '.gif'];
   let i = 0;
-
   function tryNext() {
     if (i >= exts.length) {
       heroImg.src = '';
@@ -70,22 +60,19 @@ function trySetImage(imgName) {
     heroImg.src = attempt;
     heroImg.alt = imgName;
   }
-
   tryNext();
 }
 
-// Audio loader with fallback extensions
+// Audio loader
 function playAudioFor(item) {
   if (currentAudio) {
     currentAudio.pause();
     currentAudio = null;
   }
   if (!item || !item.audio) return;
-
   const base = `audio/${item.audio}`;
   const exts = ['.mp3', '.wav', '.ogg'];
   let i = 0;
-
   function tryNext() {
     if (i >= exts.length) return;
     const url = base + exts[i];
@@ -99,7 +86,6 @@ function playAudioFor(item) {
       tryNext();
     };
   }
-
   tryNext();
 }
 
@@ -113,11 +99,9 @@ function render() {
     closeBtn.style.display = 'none';
     return;
   }
-
   dialogue.textContent = item.text || '';
   trySetImage(item.image);
   indexIndicator.textContent = `${index + 1}/${messages.length}`;
-
   closeBtn.style.display = index === messages.length - 1 ? 'flex' : 'none';
 }
 
@@ -140,69 +124,4 @@ closeBtn.addEventListener('click', () => {
   index = 0;
 });
 
-// Load JSON
-fetch('message.json')
-  .then((r) => r.json())
-  .then((data) => {
 
-    // If system message → auto-load
-    if (matchType === "system" && matchKey) {
-      choiceScreen.style.display = "none";
-      messageScreen.style.display = "block";
-
-      messages = normalizeItems(data.systemMessages[matchKey] || []);
-      index = 0;
-
-      render();
-      playAudioFor(messages[index]);
-
-      sessionStorage.clear();
-      return;
-    }
-
-    // Otherwise show gift choice screen
-    document.querySelectorAll('.gift-box').forEach(box => {
-      box.addEventListener('click', () => {
-        const selectedType = box.dataset.type;
-        index = 0;
-
-        choiceScreen.style.display = 'none';
-        messageScreen.style.display = 'block';
-
-        if (selectedType === 'personal') {
-          if (matchName && data.personalMessages && data.personalMessages[matchName]) {
-            messages = normalizeItems(data.personalMessages[matchName]);
-          } else {
-            const names = Object.keys(data.personalMessages || {});
-            if (names.length > 0) {
-              messages = normalizeItems(data.personalMessages[names[0]]);
-            } else {
-              messages = [];
-            }
-          }
-        } else if (selectedType === 'multiple') {
-          messages = normalizeItems((data.systemMessages && data.systemMessages.multipleMatch) || []);
-        } else if (selectedType === 'christmas') {
-          messages = normalizeItems(data.christmasMessage || []);
-        } else if (selectedType === 'newyear') {
-          messages = normalizeItems(data.newYearMessage || []);
-        } else {
-          messages = [];
-        }
-
-        if (messages.length > 0) {
-          render();
-          playAudioFor(messages[index]);
-        } else {
-          dialogue.textContent = 'No messages found.';
-        }
-
-        sessionStorage.clear();
-      });
-    });
-
-  })
-  .catch((err) => {
-    console.error('Failed to load message.json', err);
-    choiceScreen.innerHTML = 'Failed to load messages.';
-  });
