@@ -1,6 +1,6 @@
-/* ------------------------------ */
-/* 🎄 GLOBAL RESET */
-/* ------------------------------ */
+
+
+
 
 * {
   box-sizing: border-box;
@@ -15,9 +15,9 @@ body {
   align-items: center;
 }
 
-/* ------------------------------ */
-/* 🎄 CHRISTMAS BACKGROUND & SNOW */
-/* ------------------------------ */
+
+
+
 
 .christmas-bg {
   background: url('image/christmas.jpg') center/cover no-repeat;
@@ -34,9 +34,9 @@ body {
   z-index: 1;
 }
 
-/* ------------------------------ */
-/* 🎄 INDEX CONTAINER */
-/* ------------------------------ */
+
+
+
 
 .container {
   width: 700px;
@@ -70,9 +70,9 @@ input {
   background: #e6f3ff;
 }
 
-/* ------------------------------ */
-/* 🎄 PUSHABLE BUTTON */
-/* ------------------------------ */
+
+
+
 
 .pushable {
   position: relative;
@@ -128,9 +128,9 @@ input {
 .pushable:hover .shadow { transform: translateY(4px); }
 .pushable:active .shadow { transform: translateY(1px); }
 
-/* ------------------------------ */
-/* ✨ SPARKLE PARTICLES */
-/* ------------------------------ */
+
+
+
 
 .particle {
   position: absolute;
@@ -146,4 +146,36 @@ input {
   0% { opacity: 1; transform: scale(0.2); filter: blur(1px); }
   50% { opacity: 0.9; transform: scale(1.6); filter: blur(3px); }
   100% { opacity: 0; transform: scale(3.5); filter: blur(6px); }
+}
+
+#toast {
+  visibility: hidden;
+  min-width: 300px;
+  background-color: #d42426;
+  color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  padding: 20px;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  border: 2px solid #f8e4b7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  opacity: 0;
+  transition: opacity 0.4s, visibility 0.4s;
+}
+
+#toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.particle {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
 }

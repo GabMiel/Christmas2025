@@ -1,6 +1,5 @@
 {
   "title": "Christmas Message 2025",
-
   "systemMessages": {
     "multipleMatch": [
       "Mukhang may kapareho kang pangalan.",
@@ -12,7 +11,6 @@
       "Okay lang yun."
     ]
   },
-
   "authNames": [
     "Marx Elis Suarez",
     "Charisse Dela Cruz",
@@ -20,14 +18,12 @@
     "Jastine Buscas",
     "Adrian Lamban"
   ],
-
   "christmasMessage": [
-    { "text": "Merry Christmas!! Maligayang Pasko!!", "audio": "christmas1", "image": "christmasimg1" },
-    { "text": "Enjoyin niyo na ang bakasyon dahil 11 days nalang at enrollment na 🙀", "audio": "christmas2", "image": "christmasimg2" },
-    { "text": "At babalik na tayo sa reality pagtapos ng bagong taon", "audio": "christmas3", "image": "christmasimg3" },
-    { "text": "Pero may good news ako", "audio": "christmas4", "image": "christmasimg4" },
-    { "text": "Good news na buhay pa tayo. May next semester pa para ma-develop ang character development natin.", "audio": "christmas5", "image": "christmasimg5" },
-    { "text": "Pero laban lang, kasi wala naman tayong choice.", "audio": "christmas6", "image": "christmasimg6" },
-    { "text": "Good luck sa atin, Merry Christmas at advance Happy New Year narin, at kitakits nalang sa enrollment at start ng klase, じゃあね！", "audio": "christmas7", "image": "christmasimg7" }
+    { "text": "Merry Christmas!! Maligayang Pasko!!", "audio": "christmas1.m4a", "image": "1.jpg" },
+    { "text": "Enjoyin niyo na ang bakasyon dahil 11 days nalang at enrollment na 🙀", "audio": "christmas2.m4a", "image": "2.jpg" },
+    { "text": "At babalik na tayo sa reality pagtapos ng bagong taon", "audio": "christmas3.m4a", "image": "3.jpg" },
+    { "text": "Pero may good news ako, good news na buhay pa tayo", "audio": "christmas4.m4a", "image": "4.jpg" },
+    { "text": "May next semester pa para ma-develop ang character development natin. Pero laban lang, kasi wala naman tayong choice.", "audio": "christmas5.m4a", "image": "5.jpg" },
+    { "text": "Good luck sa atin, Merry Christmas at advance Happy New Year narin, at kitakits nalang sa enrollment at start ng klase, じゃあね！", "audio": "christmas6.m4a", "image": "6.jpg" }
   ]
 }

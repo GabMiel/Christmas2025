@@ -7,41 +7,48 @@ document.addEventListener("DOMContentLoaded", () => {
   let multipleMatchMessage = [];
   let fallbackMessage = [];
 
+  // 🍞 Create Toast Element if it doesn't exist
+  let toastContainer = document.getElementById("toast");
+  if (!toastContainer) {
+    toastContainer = document.createElement("div");
+    toastContainer.id = "toast";
+    document.body.appendChild(toastContainer);
+  }
+
+  function showToast(messages) {
+    // Joins the JSON array into lines
+    toastContainer.innerHTML = messages.join("<br>");
+    toastContainer.classList.add("show");
+    
+    // Auto-hide after 4 seconds
+    setTimeout(() => {
+      toastContainer.classList.remove("show");
+    }, 4000);
+  }
+
   /* ✨ GOLDEN FULL-RADIUS EXPLOSION ✨ */
   if (sparkleBtn) {
     sparkleBtn.addEventListener("click", () => {
-      const maxRadius = 500; // how far particles can go
+      if (!input.value.trim()) return;
 
+      const maxRadius = 500; 
       for (let i = 0; i < 50; i++) {
         const particle = document.createElement("span");
         particle.classList.add("particle");
-
-        // Bigger sparkles
         const size = Math.random() * 16 + 12;
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
-
-        // Random angle
         const angle = Math.random() * Math.PI * 2;
-
-        // Random distance (fixes ring problem)
         const distance = Math.random() * maxRadius;
-
-        // Convert polar → cartesian
         const x = sparkleBtn.offsetWidth / 2 + Math.cos(angle) * distance;
         const y = sparkleBtn.offsetHeight / 2 + Math.sin(angle) * distance;
-
         particle.style.left = `${x}px`;
         particle.style.top = `${y}px`;
-
-        // Golden color range
         const hue = 45 + Math.random() * 20;
         const lightness = 60 + Math.random() * 20;
         particle.style.background = `hsl(${hue}deg 100% ${lightness}%)`;
-
         sparkleBtn.appendChild(particle);
-
-        setTimeout(() => particle.remove(), 1500);
+        setTimeout(() => particle.remove(), 2000);
       }
     });
   }
@@ -51,44 +58,38 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((res) => res.json())
     .then((data) => {
       authNames = data.authNames || [];
-      multipleMatchMessage = (data.systemMessages && data.systemMessages.multipleMatch) || [];
-      fallbackMessage = (data.systemMessages && data.systemMessages.fallback) || [];
+      multipleMatchMessage = data.systemMessages?.multipleMatch || [];
+      fallbackMessage = data.systemMessages?.fallback || [];
 
       if (sparkleBtn) {
         sparkleBtn.addEventListener('click', handleClick);
       }
     })
-    .catch((err) => {
-      console.error('Failed to load message.json', err);
-      if (sparkleBtn) {
-        sparkleBtn.addEventListener('click', handleClick);
-      }
-    });
+    .catch((err) => console.error('Failed to load message.json', err));
 
   function handleClick() {
     const userInput = input.value.toLowerCase().trim();
-    output.textContent = '';
     if (!userInput) return;
 
-    // Find matches in authNames
+    // Find matches
     const matches = authNames.filter(name => name.toLowerCase().includes(userInput));
-
     sessionStorage.clear();
 
     if (matches.length === 1) {
+      // SUCCESS: Redirect to next page
       sessionStorage.setItem("matchType", "auth");
       sessionStorage.setItem("matchName", matches[0]);
-    } else if (matches.length > 1) {
-      sessionStorage.setItem("matchType", "system");
-      sessionStorage.setItem("matchKey", "multipleMatch");
-    } else {
-      sessionStorage.setItem("matchType", "system");
-      sessionStorage.setItem("matchKey", "fallback");
-    }
+      
+      setTimeout(() => {
+        window.location.href = "screen/screen.html";
+      }, 1000);
 
-    // ⭐ Delay redirect so sparkles show
-    setTimeout(() => {
-      window.location.href = "screen/screen.html";
-    }, 1000);
+    } else if (matches.length > 1) {
+      // MULTIPLE MATCH: Stay on page and show toast
+      showToast(multipleMatchMessage);
+    } else {
+      // NO MATCH: Stay on page and show toast
+      showToast(fallbackMessage);
+    }
   }
 });
