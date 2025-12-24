@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Christmas Video</title>
   <link rel="stylesheet" href="../style.css" />
   <style>
@@ -11,9 +12,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: 100dvh; /* Use dynamic viewport height for mobile browsers */
       overflow: hidden;
-      font-family: sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      touch-action: manipulation; /* Improves touch response on Android */
     }
 
     /* Snow Overlay */
@@ -24,45 +26,52 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 15; /* Sits above the cover but below the back button */
+      z-index: 15;
     }
 
     .video-container {
       width: 100%;
-      max-width: 430px;
+      /* Optimization: Use 100% width on small phones, 430px on larger ones */
+      max-width: 430px; 
+      height: 100%;
+      max-height: 90vh;
       aspect-ratio: 9 / 16;
       background: #000;
       position: relative;
-      border: 4px solid #f1c40f;
-      border-radius: 15px;
+      border: 3px solid #f1c40f;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(241, 196, 15, 0.3);
+      box-shadow: 0 0 25px rgba(241, 196, 15, 0.4);
+      margin: 10px;
     }
 
     iframe {
       width: 100%;
       height: 100%;
       border: none;
+      /* Removes grey flash on Android/Chrome when loading */
+      background: black; 
     }
 
     .back-btn {
       position: absolute;
-      top: 15px;
-      left: 15px;
-      background: rgba(212, 36, 38, 0.8);
+      top: 12px;
+      left: 12px;
+      background: #d42426;
       color: #fff;
       border: 2px solid #f1c40f;
-      padding: 8px 12px;
+      padding: 10px 14px; /* Slightly larger for easier thumb-tapping */
       border-radius: 8px;
       cursor: pointer;
-      font-size: 14px;
-      z-index: 20; /* Highest z-index to remain clickable */
-      transition: transform 0.2s;
+      font-size: 16px;
+      font-weight: bold;
+      z-index: 30;
+      box-shadow: 0 4px 0 #8a1719;
     }
 
-    .back-btn:hover {
-      transform: scale(1.05);
-      background: rgba(212, 36, 38, 1);
+    .back-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #8a1719;
     }
 
     #videoCover {
@@ -71,42 +80,50 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../image/christmas.jpg');
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../image/christmas.jpg');
       background-size: cover;
       background-position: center;
-      z-index: 10;
+      z-index: 20;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      transition: opacity 0.8s ease;
+      transition: opacity 0.6s ease-out;
     }
 
     .play-trigger {
       background: #f1c40f;
       color: #7f0d0e;
       border: none;
-      padding: 15px 30px;
-      font-size: 18px;
+      padding: 18px 36px;
+      font-size: 20px;
       font-weight: bold;
       border-radius: 50px;
       cursor: pointer;
       box-shadow: 0 6px #b8860b;
-      position: relative;
-      z-index: 25; /* Ensures button is above snow so it's clickable */
+      -webkit-tap-highlight-color: transparent; /* Removes blue box on Android tap */
     }
 
     .play-trigger:active {
-      box-shadow: 0 2px #b8860b;
-      transform: translateY(4px);
+      transform: scale(0.95);
     }
 
     .cover-text {
       color: white;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-      margin-bottom: 20px;
-      font-size: 24px;
+      text-shadow: 0 2px 10px rgba(0,0,0,1);
+      margin-bottom: 25px;
+      font-size: 26px;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    /* Adjustments for very small phones */
+    @media (max-height: 600px) {
+      .video-container {
+        aspect-ratio: auto;
+        height: 95vh;
+      }
+      .cover-text { font-size: 18px; }
     }
   </style>
 </head>
@@ -114,17 +131,16 @@
 
   <div class="video-container">
     <button class="back-btn" onclick="window.location.href='screen.html'">← Back</button>
-
     <div class="snow-container" id="snowContainer"></div>
 
     <div id="videoCover">
-      <h2 class="cover-text">Merry Christmas!<br>🎄✨</h2>
-      <button class="play-trigger" id="startVideo">WATCH VIDEO</button>
+      <h2 class="cover-text">Maligayang Pasko!<br>🎁🎄</h2>
+      <button class="play-trigger" id="startVideo">PLAY VIDEO</button>
     </div>
 
     <iframe 
       id="ytPlayer"
-      src="https://www.youtube.com/embed/5jq5w0322B0?enablejsapi=1&rel=0&start=0" 
+      src="https://www.youtube.com/embed/5jq5w0322B0?enablejsapi=1&rel=0&start=0&playsinline=1&modestbranding=1" 
       title="Christmas 2025" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
       allowfullscreen>
@@ -135,47 +151,41 @@
     const cover = document.getElementById('videoCover');
     const player = document.getElementById('ytPlayer');
     const startBtn = document.getElementById('startVideo');
-    const snowContainer = document.getElementById('snowContainer');
+    const snow = document.getElementById('snowContainer');
 
-    // 1. Logic to start the video
-    startBtn.addEventListener('click', () => {
+    startBtn.addEventListener('click', function() {
+      // Direct action for Android Chrome to permit audio
       cover.style.opacity = '0';
+      
+      // Update SRC to force autoplay from the beginning
+      const videoSrc = player.src;
+      player.src = videoSrc + "&autoplay=1";
+      
       setTimeout(() => {
         cover.style.display = 'none';
-        // Stop snow once video starts to keep screen clean, or keep it if you prefer
-        snowContainer.style.display = 'none'; 
-      }, 800);
-
-      const currentSrc = player.src;
-      player.src = currentSrc + "&autoplay=1";
+        snow.style.display = 'none';
+      }, 600);
     });
 
-    // 2. Simple Snowfall Logic
-    function createSnowflake() {
-      const snowflake = document.createElement('div');
-      snowflake.innerHTML = '❄';
-      snowflake.style.position = 'absolute';
-      snowflake.style.color = 'white';
-      snowflake.style.opacity = Math.random();
-      snowflake.style.fontSize = Math.random() * 20 + 10 + 'px';
-      snowflake.style.left = Math.random() * 100 + '%';
-      snowflake.style.top = '-20px';
-      snowflake.style.transition = `top ${Math.random() * 3 + 2}s linear, left 2s ease-in-out`;
-      
-      snowContainer.appendChild(snowflake);
-
-      setTimeout(() => {
-        snowflake.style.top = '100%';
-      }, 100);
-
-      setTimeout(() => {
-        snowflake.remove();
-      }, 5000);
+    // Simple Mobile Snowfall
+    function createSnow() {
+      if (cover.style.display === 'none') return;
+      const flake = document.createElement('div');
+      flake.innerHTML = '❄';
+      flake.style.cssText = `
+        position: absolute;
+        color: white;
+        left: ${Math.random() * 100}%;
+        top: -20px;
+        font-size: ${Math.random() * 15 + 10}px;
+        opacity: ${Math.random()};
+        transition: top 4s linear;
+      `;
+      snow.appendChild(flake);
+      setTimeout(() => flake.style.top = '105%', 50);
+      setTimeout(() => flake.remove(), 4500);
     }
-
-    // Generate snowflakes every 300ms
-    setInterval(createSnowflake, 300);
+    setInterval(createSnow, 400);
   </script>
-
 </body>
 </html>
