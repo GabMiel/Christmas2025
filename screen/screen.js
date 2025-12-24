@@ -1,19 +1,19 @@
-// Redirect gift-box clicks
+
 document.querySelectorAll('.gift-box').forEach(box => {
   box.addEventListener('click', () => {
     const type = box.getAttribute('data-type');
     if (type === 'christmasVideo') {
-      // Redirect to dedicated video layout
+      
       window.location.href = 'screen3.html';
     } else if (type === 'christmas') {
-      // Redirect to dedicated message layout
+      
       window.location.href = 'screen2.html';
     }
   });
 });
 
 
-// Close button → back to index
+
 const choiceCloseBtn = document.getElementById('choiceCloseBtn');
 if (choiceCloseBtn) {
   choiceCloseBtn.addEventListener('click', () => {
@@ -25,7 +25,7 @@ let messages = [];
 let currentAudio = null;
 let index = 0;
 
-// Normalize message items
+
 function normalizeItems(raw) {
   return (raw || []).map((item) => {
     if (typeof item === 'string') return { text: item };
@@ -37,7 +37,7 @@ function normalizeItems(raw) {
   });
 }
 
-// Image loader with fallback
+
 function trySetImage(imgName) {
   if (!imgName) {
     heroImg.src = '';
@@ -63,7 +63,7 @@ function trySetImage(imgName) {
   tryNext();
 }
 
-// Audio loader
+
 function playAudioFor(item) {
   if (currentAudio) {
     currentAudio.pause();
@@ -89,7 +89,7 @@ function playAudioFor(item) {
   tryNext();
 }
 
-// Render message
+
 function render() {
   const item = messages[index];
   if (!item) {
@@ -105,7 +105,7 @@ function render() {
   closeBtn.style.display = index === messages.length - 1 ? 'flex' : 'none';
 }
 
-// Navigation
+
 function go(delta) {
   const next = index + delta;
   if (next < 0 || next >= messages.length) return;

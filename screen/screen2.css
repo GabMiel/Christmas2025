@@ -1,6 +1,6 @@
-/* ------------------------------ */
-/* 🎄 GLOBAL RESET */
-/* ------------------------------ */
+
+
+
 * {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
@@ -18,9 +18,9 @@ html, body {
   align-items: center;
 }
 
-/* ------------------------------ */
-/* 🎄 FULLSCREEN WRAPPER */
-/* ------------------------------ */
+
+
+
 #messageScreen {
   height: 100vh;         
   width: 100vw;          
@@ -29,12 +29,12 @@ html, body {
   background: #000;
   position: relative;
   overflow: hidden;     
-  /* Removed main outer border here */
+ 
 }
 
-/* ------------------------------ */
-/* 🎄 TOP IMAGE SECTION */
-/* ------------------------------ */
+
+
+
 .top-image {
   flex: 1;               
   width: 100%;
@@ -42,8 +42,8 @@ html, body {
   justify-content: center; 
   align-items: center;     
   overflow: hidden;
-  background-color: #000; /* Set to pure black to blend with the scene */
-  /* Removed border-bottom to let the image float freely */
+  background-color: #000;
+ 
 }
 
 .top-image img {
@@ -54,9 +54,9 @@ html, body {
   display: block;
 }
 
-/* ------------------------------ */
-/* 🎄 DIALOGUE BOX (NOW WITH BORDER) */
-/* ------------------------------ */
+
+
+
 .dialogue-box {
   height: 30%;           
   min-height: 220px;
@@ -68,14 +68,14 @@ html, body {
   position: relative;
   flex-shrink: 0;
   
-  /* 🔑 This creates the white frame ONLY around the bottom area */
+ 
   border: 4px solid #fff; 
-  margin: 0 40px 40px 40px; /* Space from screen edges */
+  margin: 0 40px 40px 40px;
 }
 
-/* ------------------------------ */
-/* 🎄 AVATAR */
-/* ------------------------------ */
+
+
+
 .avatar-area {
   flex: 0 0 auto;
   margin-right: 30px;
@@ -89,9 +89,9 @@ html, body {
   border: 2px solid #fff; 
 }
 
-/* ------------------------------ */
-/* 🎄 DIALOGUE TEXT */
-/* ------------------------------ */
+
+
+
 .dialogue-content {
   flex: 1;
   font-size: 1.8rem;     
@@ -100,9 +100,9 @@ html, body {
   max-width: 75%;        
 }
 
-/* ------------------------------ */
-/* 🎄 NAVIGATION ARROWS */
-/* ------------------------------ */
+
+
+
 .nav-group {
   position: absolute;
   bottom: 20px;
@@ -127,9 +127,9 @@ html, body {
   transition: background 0.2s;
 }
 
-/* ------------------------------ */
-/* 🎄 CLOSE BUTTON */
-/* ------------------------------ */
+
+
+
 .close-btn {
   position: absolute;
   top: 30px;
@@ -150,12 +150,12 @@ html, body {
 }
 
 .close-btn:hover {
-  background: #ffffff;           /* Flip colors on hover */
+  background: #ffffff;          
   color: #000000;
-  transform: rotate(90deg) scale(1.1); /* Adds a cool rotation effect */
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* White glow */
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 }
 
 .close-btn:active {
-  transform: scale(0.95);        /* "Click" squish effect */
+  transform: scale(0.95);       
 }

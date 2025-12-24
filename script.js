@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let multipleMatchMessage = [];
   let fallbackMessage = [];
 
-  // 🍞 Create Toast Element if it doesn't exist
+  
   let toastContainer = document.getElementById("toast");
   if (!toastContainer) {
     toastContainer = document.createElement("div");
@@ -16,17 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showToast(messages) {
-    // Joins the JSON array into lines
+    
     toastContainer.innerHTML = messages.join("<br>");
     toastContainer.classList.add("show");
     
-    // Auto-hide after 4 seconds
+    
     setTimeout(() => {
       toastContainer.classList.remove("show");
     }, 4000);
   }
 
-  /* ✨ GOLDEN FULL-RADIUS EXPLOSION ✨ */
+ 
   if (sparkleBtn) {
     sparkleBtn.addEventListener("click", () => {
       if (!input.value.trim()) return;
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ✅ AUTHENTICATION LOGIC */
+ 
   fetch('message.json')
     .then((res) => res.json())
     .then((data) => {
@@ -71,12 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const userInput = input.value.toLowerCase().trim();
     if (!userInput) return;
 
-    // Find matches
+    
     const matches = authNames.filter(name => name.toLowerCase().includes(userInput));
     sessionStorage.clear();
 
     if (matches.length === 1) {
-      // SUCCESS: Redirect to next page
+      
       sessionStorage.setItem("matchType", "auth");
       sessionStorage.setItem("matchName", matches[0]);
       
@@ -85,10 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1000);
 
     } else if (matches.length > 1) {
-      // MULTIPLE MATCH: Stay on page and show toast
+      
       showToast(multipleMatchMessage);
     } else {
-      // NO MATCH: Stay on page and show toast
+      
       showToast(fallbackMessage);
     }
   }
