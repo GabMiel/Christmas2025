@@ -110,7 +110,7 @@ nextBtn.addEventListener('click', () => go(1));
 closeBtn.addEventListener('click', () => {
   
   sessionStorage.clear();
-  window.location.href = '../index.html'; 
+  window.location.href = 'screen.html'; 
 });
 
 
